@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "547126020955",
+    "firebase_url": "https://get-nanny-1a620-default-rtdb.firebaseio.com",
+    "project_id": "get-nanny-1a620",
+    "storage_bucket": "get-nanny-1a620.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547126020955:android:c6ebc5438df6ee4a0e687e",
+        "android_client_info": {
+          "package_name": "com.example.getnanny20"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547126020955-m2r980r8m18l0avf347sh4er1kce104k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVgVsRDDK3F8W7-u30ipD1iavJzKlDnUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547126020955-m2r980r8m18l0avf347sh4er1kce104k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

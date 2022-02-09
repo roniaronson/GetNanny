@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ActivityAddPost"
+    android:background="#F9F7F7">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/addpost_TXT_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        app:fontFamily="sans-serif-medium"
+        android:textColor="#112D4E"
+        android:textSize="32sp"
+        android:text="Sharing" />
+
+    <LinearLayout
+        android:id="@+id/addpost_LO_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/addpost_TXT_share"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addpost_EDT_hourlyrate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            android:hint="Your Hourly Rate"
+            app:counterMaxLength="20"
+            app:boxBackgroundColor="#DBE2EF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                app:suffixText="$"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/addpost_EDT_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:errorEnabled="true"
+            android:hint="Write a Short Description"
+            app:counterMaxLength="3"
+            app:boxBackgroundColor="#DBE2EF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/addpost_IMG_addpicture"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/addimage" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addpost_BTN_share"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
+            android:text="share"
+            android:textColor="#3F72AF"
+            app:cornerRadius="50dp"
+            app:strokeColor="#3F72AF"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addpost_BTN_back"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="back"
+        android:textColor="#3F72AF"
+        app:cornerRadius="50dp"
+        app:strokeColor="#3F72AF" />
+
+
+
+
+
+</RelativeLayout>
