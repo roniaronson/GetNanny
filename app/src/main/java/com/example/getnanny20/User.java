@@ -1,6 +1,7 @@
 package com.example.getnanny20;
 
 public class User {
+        private String userID;
         private String name;
         private String Email;
         private String password;
@@ -9,6 +10,10 @@ public class User {
 
         public User() {
         }
+
+        public String getUserID(){ return this.userID;}
+
+        public void setUserID(String userID){ this.userID = userID;}
 
         public String getName() {
             return name;

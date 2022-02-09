@@ -132,6 +132,7 @@ public class ActivityRegistration extends AppCompatActivity {
                     userID = fAuth.getCurrentUser().getUid();
 
                     User user = new User();
+                    user.setUserID(userID.toString());
                     user.setEmail(reg_EDT_email.getEditText().getText().toString());
                     user.setPassword(reg_EDT_password.getEditText().getText().toString());
                     user.setName(reg_EDT_name.getEditText().getText().toString());
