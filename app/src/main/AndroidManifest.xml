@@ -22,6 +22,10 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".ActivityMap"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name="ActivityStart"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -33,7 +37,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyANsit88igVmK66ZBYt-1ieUnCYMVpoLg8" />
 
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>

@@ -5,7 +5,7 @@ public class User {
         private String name;
         private String Email;
         private String password;
-        private Post post = new Post().setDateString("");
+        private Post post = new Post().setDescription("");
         private String phoneNumber;
 
         public User() {

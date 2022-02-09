@@ -58,6 +58,8 @@ public class ActivityAddPost extends AppCompatActivity{
 
     private TextInputLayout addpost_EDT_hourlyrate;
     private TextInputLayout addpost_EDT_description;
+    private TextInputLayout addpost_EDT_experience;
+    private TextInputLayout addpost_EDT_age;
     private MaterialButton addpost_BTN_back;
     private ShapeableImageView addpost_IMG_addpicture;
     private MaterialButton addpost_BTN_share;
@@ -119,16 +121,18 @@ public class ActivityAddPost extends AppCompatActivity{
 
             Post post = new Post().
                     setUserID(user.getUid()).
-                    setName(user.getDisplayName()).
-                    setAmount(Integer.valueOf(addpost_EDT_hourlyrate.getEditText().getText().toString())).
-                    setDateString(addpost_EDT_description.getEditText().toString()).
+                    setName("").
+                    setHourlyRate(Integer.valueOf(addpost_EDT_hourlyrate.getEditText().getText().toString())).
+                    setDescription(addpost_EDT_description.getEditText().getText().toString()).
+                    setAge(Integer.valueOf(addpost_EDT_age.getEditText().getText().toString())).
+                    setYearsOfExperience(Integer.valueOf(addpost_EDT_experience.getEditText().getText().toString())).
                     setImage("").
                     setLat(lat).setLon(lon);
 
             uploadImageToFirebase(contentUri, post, user);
 
             finish();
-            Intent intent = new Intent(this, ActivityMenu.class);
+            Intent intent = new Intent(this, ActivityMap.class);
             startActivity(intent);
         }
         else
@@ -171,6 +175,7 @@ public class ActivityAddPost extends AppCompatActivity{
                             public void dataReady(ArrayList<User> users) {
                                 for (int i = 0; i < users.size(); i++) {
                                     if(users.get(i).getUserID().equals(user.getUid())){
+                                        post.setName(users.get(i).getName());
                                         users.get(i).setPost(post);
                                         myRef.child(user.getUid()).setValue(users.get(i));
                                     }
@@ -187,7 +192,7 @@ public class ActivityAddPost extends AppCompatActivity{
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ActivityAddPost.this, "Upload Failled.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ActivityAddPost.this, "Upload Failed.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -216,9 +221,13 @@ public class ActivityAddPost extends AppCompatActivity{
         addpost_IMG_addpicture = findViewById(R.id.addpost_IMG_addpicture);
         addpost_BTN_share = findViewById(R.id.addpost_BTN_share);
         addpost_BTN_back = findViewById(R.id.addpost_BTN_back);
+        addpost_EDT_experience = findViewById(R.id.addpost_EDT_experience);
+        addpost_EDT_age = findViewById(R.id.addpost_EDT_age);
         allFields = new TextInputLayout[] {
                 addpost_EDT_hourlyrate,
-                addpost_EDT_description
+                addpost_EDT_description,
+                addpost_EDT_age,
+                addpost_EDT_experience
         };
     }
 

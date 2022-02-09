@@ -3,8 +3,9 @@ package com.example.getnanny20;
 public class Post {
     private String userID;
     private String name;
-    private String location;
     private int hourlyRate;
+    private int age;
+    private int yearsOfExperience;
     private String description;
     private String image;
     private double lat;
@@ -32,12 +33,12 @@ public class Post {
         return this;
     }
 
-    public String getLocation() {
-        return location;
+    public int getAge() {
+        return age;
     }
 
-    public Post setLocation(String location) {
-        this.location = location;
+    public Post setAge(int age) {
+        this.age = age;
         return this;
     }
 
@@ -45,8 +46,17 @@ public class Post {
         return hourlyRate;
     }
 
-    public Post setAmount(int hourlyRate) {
+    public Post setHourlyRate(int hourlyRate) {
         this.hourlyRate = hourlyRate;
+        return this;
+    }
+
+    public int getYearsOfExperience() {
+        return yearsOfExperience;
+    }
+
+    public Post setYearsOfExperience(int yearsOfExperience) {
+        this.yearsOfExperience = yearsOfExperience;
         return this;
     }
 
@@ -54,7 +64,7 @@ public class Post {
         return description;
     }
 
-    public Post setDateString(String description) {
+    public Post setDescription(String description) {
         this.description = description;
         return this;
     }

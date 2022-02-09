@@ -8,10 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.getnanny20.R;
-import com.example.getnanny20.User;
-import com.example.getnanny20.MyFirebaseDB;
-import com.example.getnanny20.Validator;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -137,7 +133,7 @@ public class ActivityRegistration extends AppCompatActivity {
                     user.setPassword(reg_EDT_password.getEditText().getText().toString());
                     user.setName(reg_EDT_name.getEditText().getText().toString());
                     user.setPhoneNumber(reg_EDT_phone.getEditText().getText().toString());
-                    user.setPost(new Post().setDateString(""));
+                    user.setPost(new Post().setDescription(""));
 
                     myRef.child(userID).setValue(user);
                 }
