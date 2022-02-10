@@ -2,14 +2,18 @@ package com.example.getnanny20;
 
 public class Post {
     private String userID;
+    private String phoneNumber;
     private String name;
     private int hourlyRate;
     private int age;
     private int yearsOfExperience;
     private String description;
+    private int numOfChildren;
     private String image;
+    private String dateString;
     private double lat;
     private double lon;
+    private boolean isParent;
 
     public Post() {
     }
@@ -23,6 +27,14 @@ public class Post {
         return this;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Post setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
 
     public String getName() {
         return name;
@@ -39,6 +51,15 @@ public class Post {
 
     public Post setAge(int age) {
         this.age = age;
+        return this;
+    }
+
+    public int getNumOfChildren() {
+        return numOfChildren;
+    }
+
+    public Post setNumOfChildren(int numOfChildren) {
+        this.numOfChildren = numOfChildren;
         return this;
     }
 
@@ -78,6 +99,15 @@ public class Post {
         return this;
     }
 
+    public String getDateString() {
+        return dateString;
+    }
+
+    public Post setDateString(String dateString) {
+        this.dateString = dateString;
+        return this;
+    }
+
     public double getLat() {
         return lat;
     }
@@ -96,6 +126,12 @@ public class Post {
         return this;
     }
 
+    public boolean getIsParent(){return isParent;}
+
+    public Post setIsParent(boolean isParent){
+        this.isParent = isParent;
+        return this;
+    }
    //TO DO
     @Override
     public String toString() {

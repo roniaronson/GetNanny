@@ -17,11 +17,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.getnanny20.R;
-import com.example.getnanny20.CallBack_List;
-import com.example.getnanny20.CallBack_Map;
-import com.example.getnanny20.FragmentMap;
-import com.example.getnanny20.FragmentList;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,7 +32,7 @@ public class ActivityMap extends AppCompatActivity implements LocationListener {
     private FragmentList fragmentList;
     private FragmentMap fragmentMap;
     private MaterialButton search_BTN_back;
-
+    private boolean isParent;
     private LocationManager locationManager;
     private double lat, lon;
     private FusedLocationProviderClient client;
@@ -46,7 +41,10 @@ public class ActivityMap extends AppCompatActivity implements LocationListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            isParent = extras.getBoolean("isParent");
+        }
         initBTN();
         checkLocationPermission();
         initFragmentMap();
@@ -69,6 +67,7 @@ public class ActivityMap extends AppCompatActivity implements LocationListener {
     private void initFragmentList() {
         fragmentList = new FragmentList();
         fragmentList.setActivity(this);
+        fragmentList.setIsParent(isParent);
         fragmentList.setCallBackList(callBack_list);
         callBack_list.getPostLocation(lat,lon);
         getSupportFragmentManager().beginTransaction().add(R.id.search_frame1, fragmentList).commit();
@@ -96,7 +95,7 @@ public class ActivityMap extends AppCompatActivity implements LocationListener {
         mapFragment.getMapAsync(googleMap -> {
             LatLng latLng = new LatLng(lat, lon);
             googleMap.clear();
-            googleMap.addMarker(new MarkerOptions().position(latLng).title("Meal is here!"));
+            googleMap.addMarker(new MarkerOptions().position(latLng).title("Nanny is here!"));
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15), 5000, null);
         });
     };

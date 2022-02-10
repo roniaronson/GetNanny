@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -19,10 +20,13 @@ public class AdapterPost extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private Activity activity;
     private ArrayList<Post> posts = new ArrayList<>();
     private PostItemClickListener postItemClickListener;
+    private boolean isParent;
+    //private Button post_BTN_details;
 
-    public AdapterPost(FragmentActivity activity, ArrayList<Post> posts) {
+    public AdapterPost(FragmentActivity activity, ArrayList<Post> posts, boolean isParent) {
         this.activity = activity;
         this.posts = posts;
+        this.isParent = isParent;
     }
 
     public AdapterPost setPostItemClickListener(PostItemClickListener postItemClickListener) {
@@ -40,12 +44,19 @@ public class AdapterPost extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         PostViewHolder postViewHolder = (PostViewHolder) holder;
         Post post = getItem(position);
-
         postViewHolder.post_txt_name.setText(""+post.getName());
-        postViewHolder.post_txt_age.setText(""+post.getAge()+" Years Old");
-        postViewHolder.post_txt_hourlyRate.setText("  "+post.getHourlyRate()+"$");
-        postViewHolder.post_txt_experience.setText(post.getYearsOfExperience()+" Years Of Experience");
         postViewHolder.post_txt_description.setText(""+post.getDescription());
+        if(isParent){
+            postViewHolder.post_txt_age.setText(""+post.getAge()+" Years Old");
+            postViewHolder.post_txt_hourlyRate.setText("  "+post.getHourlyRate()+"$");
+            postViewHolder.post_txt_experience.setText(post.getYearsOfExperience()+" Years Of Experience");
+        }
+        else{
+            postViewHolder.post_txt_age.setText(""+post.getNumOfChildren()+" Children");
+            postViewHolder.post_txt_experience.setText(post.getDateString());
+            postViewHolder.post_txt_hourlyRate.setText("");
+        }
+
         Glide
                 .with(activity)
                 .load(post.getImage())

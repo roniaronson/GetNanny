@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class FragmentList extends Fragment {
     private RecyclerView board_LST_posts;
-
+    private boolean isParent;
     private AppCompatActivity activity;
     private CallBack_List callBack_list;
 
@@ -32,6 +32,7 @@ public class FragmentList extends Fragment {
         this.callBack_list = callBack_list;
     }
 
+    public void setIsParent(boolean isParent){ this.isParent = isParent;}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,11 +54,12 @@ public class FragmentList extends Fragment {
                 ArrayList<Post> posts = new ArrayList<>();
                 for (int i = 0; i < users.size(); i++) {
                     if (!users.get(i).getPost().getDescription().equals("")) {
-                        posts.add(users.get(i).getPost());
+                        if(users.get(i).getPost().getIsParent() ^ isParent)
+                            posts.add(users.get(i).getPost());
                     }
                 }
 
-                AdapterPost adapterPost = new AdapterPost(getActivity(), posts);
+                AdapterPost adapterPost = new AdapterPost(getActivity(), posts, isParent);
 
                 board_LST_posts.setLayoutManager(new GridLayoutManager(getActivity(), 1));
                 board_LST_posts.setHasFixedSize(true);

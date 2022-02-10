@@ -11,10 +11,10 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -29,8 +30,11 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -51,11 +55,16 @@ public class ActivityAddPost extends AppCompatActivity{
     private String imageFileName;
     private String imageLink;
     private boolean isImgOk = false;
-
+    private boolean isDateOk = false;
+    private boolean isParent;
     private FusedLocationProviderClient client;
     private LocationManager locationManager;
     private double lat, lon;
+    private MaterialDatePicker.Builder builder;
+    private MaterialDatePicker materialDatePicker;
+    private String dateString;
 
+    private MaterialTextView addpost_TXT_title;
     private TextInputLayout addpost_EDT_hourlyrate;
     private TextInputLayout addpost_EDT_description;
     private TextInputLayout addpost_EDT_experience;
@@ -63,6 +72,7 @@ public class ActivityAddPost extends AppCompatActivity{
     private MaterialButton addpost_BTN_back;
     private ShapeableImageView addpost_IMG_addpicture;
     private MaterialButton addpost_BTN_share;
+    private MaterialButton addpost_BTN_datePicker;
     private TextInputLayout[] allFields;
 
     private FirebaseAuth fAuth;
@@ -71,8 +81,14 @@ public class ActivityAddPost extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpost);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            isParent = extras.getBoolean("isParent");
+        }
         fAuth = FirebaseAuth.getInstance();
         findViews();
+        initDate();
+        updateUI();
         initBTNs();
 
         ActivityCompat.requestPermissions(this,
@@ -86,8 +102,30 @@ public class ActivityAddPost extends AppCompatActivity{
         }
     }
 
+    private void updateUI() {
+        if(isParent){
+            addpost_TXT_title.setText("Find The Best Babysitter");
+            addpost_EDT_hourlyrate.setHint("Number Of Children");
+            addpost_BTN_datePicker.setVisibility(View.VISIBLE);
+            addpost_EDT_experience.setVisibility(View.INVISIBLE);
+            addpost_EDT_age.setVisibility(View.INVISIBLE);
+        }
+        else{
+            isDateOk = true;
+            addpost_TXT_title.setText("Get a Job Next to You");
+            addpost_EDT_hourlyrate.setHint("Your Hourly Rate");
+            addpost_BTN_datePicker.setVisibility(View.INVISIBLE);
+            addpost_EDT_experience.setVisibility(View.VISIBLE);
+            addpost_EDT_age.setVisibility(View.VISIBLE);
+        }
+    }
+
 
     private void initBTNs() {
+        addpost_BTN_datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { datePick();}
+        });
         addpost_IMG_addpicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { imgUpload();}
@@ -113,7 +151,11 @@ public class ActivityAddPost extends AppCompatActivity{
             }
         });
     }
-
+    private void initDate() {
+        builder = MaterialDatePicker.Builder.datePicker();
+        builder.setTitleText("Select A Date");
+        materialDatePicker = builder.build();
+    }
     private void share() throws IOException {
         if (isValid()) {
 
@@ -121,18 +163,29 @@ public class ActivityAddPost extends AppCompatActivity{
 
             Post post = new Post().
                     setUserID(user.getUid()).
+                    setPhoneNumber("").
                     setName("").
-                    setHourlyRate(Integer.valueOf(addpost_EDT_hourlyrate.getEditText().getText().toString())).
                     setDescription(addpost_EDT_description.getEditText().getText().toString()).
-                    setAge(Integer.valueOf(addpost_EDT_age.getEditText().getText().toString())).
-                    setYearsOfExperience(Integer.valueOf(addpost_EDT_experience.getEditText().getText().toString())).
                     setImage("").
+                    setIsParent(isParent).
                     setLat(lat).setLon(lon);
+
+            if(isParent){
+                post.setNumOfChildren(Integer.valueOf(addpost_EDT_hourlyrate.getEditText().getText().toString()));
+                post.setDateString(dateString);
+            }
+            else{
+                post.setHourlyRate(Integer.valueOf(addpost_EDT_hourlyrate.getEditText().getText().toString()));
+                post.setAge(Integer.valueOf(addpost_EDT_age.getEditText().getText().toString()));
+                post.setYearsOfExperience(Integer.valueOf(addpost_EDT_experience.getEditText().getText().toString()));
+            }
+
 
             uploadImageToFirebase(contentUri, post, user);
 
             finish();
             Intent intent = new Intent(this, ActivityMap.class);
+            intent.putExtra("isParent", isParent);
             startActivity(intent);
         }
         else
@@ -176,6 +229,7 @@ public class ActivityAddPost extends AppCompatActivity{
                                 for (int i = 0; i < users.size(); i++) {
                                     if(users.get(i).getUserID().equals(user.getUid())){
                                         post.setName(users.get(i).getName());
+                                        post.setPhoneNumber(users.get(i).getPhoneNumber());
                                         users.get(i).setPost(post);
                                         myRef.child(user.getUid()).setValue(users.get(i));
                                     }
@@ -209,13 +263,14 @@ public class ActivityAddPost extends AppCompatActivity{
             if (field.getError() != null || field.getEditText().getText().toString().isEmpty())
                 return false;
         }
-        if (!isImgOk)
+        if (!isImgOk || !isDateOk)
             return false;
         return true;
     }
 
 
     private void findViews() {
+        addpost_TXT_title = findViewById(R.id.addpost_TXT_title);
         addpost_EDT_hourlyrate = findViewById(R.id.addpost_EDT_hourlyrate);
         addpost_EDT_description = findViewById(R.id.addpost_EDT_description);
         addpost_IMG_addpicture = findViewById(R.id.addpost_IMG_addpicture);
@@ -223,12 +278,22 @@ public class ActivityAddPost extends AppCompatActivity{
         addpost_BTN_back = findViewById(R.id.addpost_BTN_back);
         addpost_EDT_experience = findViewById(R.id.addpost_EDT_experience);
         addpost_EDT_age = findViewById(R.id.addpost_EDT_age);
-        allFields = new TextInputLayout[] {
-                addpost_EDT_hourlyrate,
-                addpost_EDT_description,
-                addpost_EDT_age,
-                addpost_EDT_experience
-        };
+        addpost_BTN_datePicker = findViewById(R.id.addpost_BTN_datePicker);
+        if(isParent){
+            allFields = new TextInputLayout[] {
+                    addpost_EDT_hourlyrate,
+                    addpost_EDT_description,
+            };
+        }
+        else{
+            allFields = new TextInputLayout[] {
+                    addpost_EDT_hourlyrate,
+                    addpost_EDT_description,
+                    addpost_EDT_age,
+                    addpost_EDT_experience
+            };
+        }
+
     }
 
     private void OnGPS() {
@@ -264,6 +329,18 @@ public class ActivityAddPost extends AppCompatActivity{
                 Toast.makeText(this, "Unable to find location.", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+    private void datePick() {
+        materialDatePicker.show(getSupportFragmentManager(), "DATE_PICKER");
+
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                dateString = "" + materialDatePicker.getHeaderText();
+                isDateOk = true;
+            }
+        });
     }
 
 

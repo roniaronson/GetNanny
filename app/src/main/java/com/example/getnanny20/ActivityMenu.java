@@ -12,6 +12,7 @@ import com.google.android.material.button.MaterialButton;
 public class ActivityMenu extends AppCompatActivity {
     MaterialButton menu_btn_parent;
     MaterialButton menu_btn_nanny;
+    boolean isParent = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,9 @@ public class ActivityMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(ActivityMenu.this, ActivityMap.class);
+                isParent = true;
+                Intent intent = new Intent(ActivityMenu.this, ActivityAddPost.class);
+                intent.putExtra("isParent", isParent);
                 startActivity(intent);
             }
         });
@@ -33,7 +36,9 @@ public class ActivityMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                isParent = false;
                 Intent intent = new Intent(ActivityMenu.this, ActivityAddPost.class);
+                intent.putExtra("isParent", isParent);
                 startActivity(intent);
             }
         });
