@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             app:errorEnabled="true"
             android:hint="email"
-            app:boxBackgroundColor="#FDE8D4">
+            app:boxBackgroundColor="#FCEDF0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@
             app:errorEnabled="true"
             app:endIconMode="password_toggle"
             android:hint="password"
-            app:boxBackgroundColor="#FDE8D4">
+            app:boxBackgroundColor="#FCEDF0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -72,29 +72,29 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/start_BTN_register"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:text="Register"
-            android:textColor="#112D4E"
-            app:cornerRadius="20dp"
-            app:strokeColor="#112D4E" />
+            android:textColor="@color/white"
+            app:cornerRadius="10dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:backgroundTint="#FDE2E7" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/start_BTN_login"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:text="Login"
-            android:textColor="#112D4E"
-            app:cornerRadius="20dp"
-            app:strokeColor="#112D4E" />
+            android:textColor="@color/white"
+            app:cornerRadius="10dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:backgroundTint="#FDE2E7" />
 
 
     </LinearLayout>
@@ -107,7 +107,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Forgot password?"
-        android:textColor="#3F72AF" />
+        android:textColor="#797878" />
 
 
 </RelativeLayout>

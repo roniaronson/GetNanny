@@ -92,7 +92,7 @@ public class ActivityRegistration extends AppCompatActivity {
     private void register() {
         if (isValid()) {
             addToDB();
-            Toast.makeText(this, "Registration completed!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "Registration completed!", Toast.LENGTH_LONG).show();
             finish();
             Intent intent = new Intent(this, ActivityStart.class);
             startActivity(intent);
@@ -124,7 +124,7 @@ public class ActivityRegistration extends AppCompatActivity {
                         }
                     });
 
-                    Toast.makeText(ActivityRegistration.this, "Registration completed!", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(ActivityRegistration.this, "Registration completed!", Toast.LENGTH_LONG).show();
                     userID = fAuth.getCurrentUser().getUid();
 
                     User user = new User();

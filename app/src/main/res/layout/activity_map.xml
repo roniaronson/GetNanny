@@ -25,7 +25,7 @@
             app:fontFamily="sans-serif-medium"
             android:textColor="#112D4E"
             android:textSize="32sp"
-            android:text="Receiving"/>
+            android:text="Job Board"/>
 
         <FrameLayout
             android:id="@+id/search_frame1"
@@ -57,15 +57,18 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/search_BTN_back"
-        android:layout_alignParentTop="true"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#FDE2E7"
         android:text="back"
-        android:textColor="#3F72AF"
-        app:cornerRadius="50dp"
-        app:strokeColor="#3F72AF"/>
+        android:textColor="@color/white"
+        app:cornerRadius="10dp" />
 
 
 </RelativeLayout>

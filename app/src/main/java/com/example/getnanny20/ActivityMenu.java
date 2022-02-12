@@ -24,10 +24,10 @@ public class ActivityMenu extends AppCompatActivity {
         menu_btn_parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 isParent = true;
+                finish();
                 Intent intent = new Intent(ActivityMenu.this, ActivityAddPost.class);
-                intent.putExtra("isParent", isParent);
+                intent.putExtra("isParent", true);
                 startActivity(intent);
             }
         });
@@ -35,10 +35,10 @@ public class ActivityMenu extends AppCompatActivity {
         menu_btn_nanny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 isParent = false;
+                finish();
                 Intent intent = new Intent(ActivityMenu.this, ActivityAddPost.class);
-                intent.putExtra("isParent", isParent);
+                intent.putExtra("isParent", false);
                 startActivity(intent);
             }
         });

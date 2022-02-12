@@ -13,29 +13,26 @@
         android:id="@+id/addpost_TXT_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="Sharing"
-        android:textColor="#112D4E"
-        android:textSize="32sp"
+        android:textColor="@color/black"
+        android:textSize="27sp"
         app:fontFamily="sans-serif-medium" />
 
-    <LinearLayout
-        android:id="@+id/addpost_LO_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/addpost_TXT_title"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="70dp"
-        android:orientation="vertical">
-
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_below="@id/addpost_TXT_title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/addpost_EDT_hourlyrate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Your Hourly Rate"
-            app:boxBackgroundColor="#DBE2EF"
+            app:boxBackgroundColor="#FCEDF0"
             app:counterMaxLength="20"
             app:errorEnabled="true">
 
@@ -48,11 +45,15 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_below="@id/addpost_EDT_hourlyrate"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/addpost_EDT_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Age"
-            app:boxBackgroundColor="#DBE2EF"
+            app:boxBackgroundColor="#FCEDF0"
             app:counterMaxLength="20"
             app:errorEnabled="true">
 
@@ -63,22 +64,30 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:layout_below="@id/addpost_EDT_hourlyrate"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/addpost_BTN_datePicker"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Select dates"
-            android:textColor="#3F72AF"
-            app:strokeColor="#3F72AF" />
+            android:textColor="#112D4E"
+            app:strokeColor="#FCEDF0" />
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_below="@+id/addpost_EDT_age"
             android:id="@+id/addpost_EDT_experience"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Years Of Experience"
-            app:boxBackgroundColor="#DBE2EF"
+            app:boxBackgroundColor="#FCEDF0"
             app:counterMaxLength="20"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -90,10 +99,14 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/addpost_EDT_description"
+            android:layout_below="@+id/addpost_EDT_experience"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Write a Short Description"
-            app:boxBackgroundColor="#DBE2EF"
+            app:boxBackgroundColor="#FCEDF0"
             app:counterMaxLength="3"
             app:errorEnabled="true">
 
@@ -104,39 +117,50 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/addpost_IMG_addpicture"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginBottom="30dp"
-            android:src="@drawable/addimage" />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/addpost_IMG_addpicture"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_below="@+id/addpost_EDT_description"
+        android:src="@drawable/addimage" />
+
+
+    <LinearLayout
+        android:id="@+id/reg_LO_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/addpost_IMG_addpicture"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp">
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addpost_BTN_share"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="share"
-            android:textColor="#3F72AF"
-            app:cornerRadius="50dp"
-            app:strokeColor="#3F72AF" />
+            android:textColor="@color/white"
+            app:cornerRadius="10dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:backgroundTint="#FDE2E7" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/reg_TXT_login"
+            android:id="@+id/addpost_TXT_skip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/addpost_BTN_share"
+            android:layout_marginTop="5dp"
             android:gravity="center"
-            android:layout_marginTop="20dp"
             android:text="Skip"
-            android:textSize="@dimen/text_20"
-            android:textColor="#3F72AF" />
-
+            android:textColor="#797878"
+            android:textSize="15dp" />
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addpost_BTN_back"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -145,9 +169,10 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:text="back"
-        android:textColor="#3F72AF"
-        app:cornerRadius="50dp"
-        app:strokeColor="#3F72AF" />
+        android:textColor="@color/white"
+        app:cornerRadius="10dp"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:backgroundTint="#FDE2E7" />
 
 
 

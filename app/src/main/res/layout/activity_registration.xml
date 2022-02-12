@@ -16,7 +16,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="Registration"
-        android:textColor="#112D4E"
+        android:textColor="@color/black"
         android:textSize="32sp"
         app:fontFamily="sans-serif-medium" />
 
@@ -37,7 +37,7 @@
             app:errorEnabled="true"
             android:hint="email"
             app:counterMaxLength="3"
-            app:boxBackgroundColor="#DBE2EF">
+            app:boxBackgroundColor="#FCEDF0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -53,7 +53,7 @@
             app:errorEnabled="true"
             app:endIconMode="password_toggle"
             android:hint="password"
-            app:boxBackgroundColor="#DBE2EF">
+            app:boxBackgroundColor="#FCEDF0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -69,7 +69,7 @@
             app:errorEnabled="true"
             android:hint="name"
             app:counterMaxLength="20"
-            app:boxBackgroundColor="#DBE2EF">
+            app:boxBackgroundColor="#FCEDF0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -85,7 +85,7 @@
             app:errorEnabled="true"
             android:hint="phone"
             app:counterMaxLength="12"
-            app:boxBackgroundColor="#DBE2EF">
+            app:boxBackgroundColor="#FCEDF0">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -97,15 +97,15 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/reg_BTN_register"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:layout_marginEnd="70dp"
+            android:layout_gravity="center_horizontal"
             android:text="register"
-            android:textColor="#112D4E"
-            app:cornerRadius="50dp"
-            app:strokeColor="#112D4E"/>
+            android:textColor="@color/white"
+            app:cornerRadius="10dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:backgroundTint="#FDE2E7"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/reg_TXT_login"
@@ -114,7 +114,7 @@
             android:gravity="center"
             android:layout_marginTop="20dp"
             android:text="Already Registered? Login Here!"
-            android:textColor="#3F72AF" />
+            android:textColor="#797878" />
 
     </LinearLayout>
 

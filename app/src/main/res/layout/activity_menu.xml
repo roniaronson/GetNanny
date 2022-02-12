@@ -22,7 +22,7 @@
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="Welcome back"
-            android:textColor="#112D4E"
+            android:textColor="@color/black"
             android:textSize="32sp"
             app:fontFamily="sans-serif-medium" />
 
@@ -32,10 +32,10 @@
             android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="70dp"
-            android:backgroundTint="#FDE8D4"
+            android:backgroundTint="#FDE2E7"
             android:text="Parent Account \n Find The Best babysitter"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <com.google.android.material.button.MaterialButton
@@ -47,7 +47,7 @@
             android:backgroundTint="#F3D0E2"
             android:text="Nanny Account \n Get a Job Next to You"
             android:textAllCaps="false"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
 

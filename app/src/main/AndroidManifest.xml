@@ -30,7 +30,15 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="ActivityStart"
+            android:name=".ActivityStart"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ActivityLottieBabysitter"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ActivityLottieParent"
             android:exported="true"
             android:screenOrientation="portrait">
 

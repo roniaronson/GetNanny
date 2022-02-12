@@ -74,6 +74,7 @@ public class ActivityAddPost extends AppCompatActivity{
     private MaterialButton addpost_BTN_share;
     private MaterialButton addpost_BTN_datePicker;
     private TextInputLayout[] allFields;
+    private MaterialTextView addpost_TXT_skip;
 
     private FirebaseAuth fAuth;
 
@@ -139,6 +140,15 @@ public class ActivityAddPost extends AppCompatActivity{
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        addpost_TXT_skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(ActivityAddPost.this, ActivityMap.class);
+                intent.putExtra("isParent", isParent);
+                startActivity(intent);
             }
         });
 
@@ -241,7 +251,7 @@ public class ActivityAddPost extends AppCompatActivity{
                     }
                 });
 
-                Toast.makeText(ActivityAddPost.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ActivityAddPost.this, "Image Is Uploaded.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -276,6 +286,7 @@ public class ActivityAddPost extends AppCompatActivity{
         addpost_IMG_addpicture = findViewById(R.id.addpost_IMG_addpicture);
         addpost_BTN_share = findViewById(R.id.addpost_BTN_share);
         addpost_BTN_back = findViewById(R.id.addpost_BTN_back);
+        addpost_TXT_skip = findViewById(R.id.addpost_TXT_skip);
         addpost_EDT_experience = findViewById(R.id.addpost_EDT_experience);
         addpost_EDT_age = findViewById(R.id.addpost_EDT_age);
         addpost_BTN_datePicker = findViewById(R.id.addpost_BTN_datePicker);
